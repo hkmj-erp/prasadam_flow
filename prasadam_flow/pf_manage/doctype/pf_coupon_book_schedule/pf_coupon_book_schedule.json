@@ -1,0 +1,105 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-04-23 12:46:44.051061",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "active",
+  "custodian",
+  "custodian_name",
+  "schedule",
+  "column_break_gjlq",
+  "coupon",
+  "slot",
+  "venue",
+  "serving_time"
+ ],
+ "fields": [
+  {
+   "fieldname": "custodian",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Custodian",
+   "options": "PF Custodian",
+   "reqd": 1
+  },
+  {
+   "description": "This will not work on Festival Coupon Slots. That has to be booked separately.",
+   "fieldname": "coupon",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Coupon",
+   "options": "PF Coupon Data",
+   "reqd": 1
+  },
+  {
+   "fieldname": "schedule",
+   "fieldtype": "Table",
+   "label": "Schedule",
+   "options": "PF Coupon Book Schedule Detail"
+  },
+  {
+   "default": "0",
+   "fieldname": "active",
+   "fieldtype": "Check",
+   "label": "Active"
+  },
+  {
+   "fieldname": "column_break_gjlq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "custodian.full_name",
+   "fieldname": "custodian_name",
+   "fieldtype": "Data",
+   "label": "Custodian Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "coupon.slot",
+   "fieldname": "slot",
+   "fieldtype": "Data",
+   "label": "Slot",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "coupon.venue",
+   "fieldname": "venue",
+   "fieldtype": "Data",
+   "label": "Venue",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "coupon.serving_time",
+   "fieldname": "serving_time",
+   "fieldtype": "Time",
+   "label": "Serving Time",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-04-23 13:48:25.079001",
+ "modified_by": "Administrator",
+ "module": "PF Manage",
+ "name": "PF Coupon Book Schedule",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

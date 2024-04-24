@@ -1,0 +1,205 @@
+{
+ "actions": [],
+ "autoname": "hash",
+ "creation": "2024-03-13 16:07:27.244565",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_j1fs",
+  "custodian",
+  "group",
+  "use_date",
+  "number",
+  "amended_from",
+  "immediate_issue",
+  "column_break_stzu",
+  "coupon_data",
+  "slot",
+  "venue",
+  "serving_time",
+  "festival",
+  "is_public",
+  "immediate_issue_details_section",
+  "receiver_name",
+  "column_break_qhns",
+  "receiver_mobile"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_j1fs",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "PF Coupon Book",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "custodian",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Custodian",
+   "options": "PF Custodian",
+   "reqd": 1
+  },
+  {
+   "fieldname": "coupon_data",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Coupon Data",
+   "options": "PF Coupon Data",
+   "reqd": 1
+  },
+  {
+   "fieldname": "use_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Use Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "number",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Number",
+   "non_negative": 1,
+   "reqd": 1
+  },
+  {
+   "fetch_from": "coupon_data.slot",
+   "fieldname": "slot",
+   "fieldtype": "Data",
+   "label": "Slot",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "coupon_data.venue",
+   "fieldname": "venue",
+   "fieldtype": "Data",
+   "label": "Venue",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_stzu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "coupon_data.serving_time",
+   "fieldname": "serving_time",
+   "fieldtype": "Time",
+   "label": "Serving Time",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "custodian.group",
+   "fieldname": "group",
+   "fieldtype": "Link",
+   "label": "Group",
+   "options": "PF Custodian Group",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fetch_from": "coupon_data.is_public",
+   "fieldname": "is_public",
+   "fieldtype": "Check",
+   "label": "Is Public",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.immediate_issue",
+   "fieldname": "receiver_name",
+   "fieldtype": "Data",
+   "label": "Receiver Name"
+  },
+  {
+   "depends_on": "eval:doc.immediate_issue",
+   "fieldname": "receiver_mobile",
+   "fieldtype": "Data",
+   "label": "Receiver Mobile"
+  },
+  {
+   "default": "0",
+   "fieldname": "immediate_issue",
+   "fieldtype": "Check",
+   "label": "Immediate Issue"
+  },
+  {
+   "fieldname": "immediate_issue_details_section",
+   "fieldtype": "Section Break",
+   "label": "Immediate Issue Details"
+  },
+  {
+   "fieldname": "column_break_qhns",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "coupon_data.festival",
+   "fieldname": "festival",
+   "fieldtype": "Data",
+   "label": "Festival",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-04-23 15:30:38.112883",
+ "modified_by": "Administrator",
+ "module": "PF Manage",
+ "name": "PF Coupon Book",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "PF Admin",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "PF Custodian",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,42 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-04-23 12:47:05.686964",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "week_day",
+  "credits"
+ ],
+ "fields": [
+  {
+   "fieldname": "week_day",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Week Day",
+   "options": "Monday\nTuesday\nWednesday\nThursday\nFriday\nSaturday\nSunday",
+   "reqd": 1
+  },
+  {
+   "fieldname": "credits",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Credits",
+   "non_negative": 1,
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-04-23 12:49:25.325628",
+ "modified_by": "Administrator",
+ "module": "PF Manage",
+ "name": "PF Coupon Book Schedule Detail",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

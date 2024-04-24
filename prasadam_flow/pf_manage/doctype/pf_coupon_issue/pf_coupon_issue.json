@@ -1,0 +1,258 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2024-03-14 14:07:38.658613",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_rreo",
+  "custodian",
+  "use_date",
+  "number",
+  "used",
+  "amended_from",
+  "emergency",
+  "column_break_okef",
+  "coupon_data",
+  "slot",
+  "festival",
+  "venue",
+  "serving_time",
+  "is_public",
+  "color",
+  "receiver_section",
+  "receiver_name",
+  "connected_booking",
+  "column_break_hpto",
+  "receiver_mobile"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_rreo",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "PF Coupon Issue",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "custodian",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Custodian",
+   "options": "PF Custodian",
+   "reqd": 1
+  },
+  {
+   "fieldname": "use_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Use Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "number",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Number",
+   "non_negative": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_okef",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "coupon_data",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Coupon Data",
+   "options": "PF Coupon Data",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "coupon_data.slot",
+   "fieldname": "slot",
+   "fieldtype": "Data",
+   "label": "Slot",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "coupon_data.festival",
+   "fieldname": "festival",
+   "fieldtype": "Data",
+   "label": "Festival",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "coupon_data.venue",
+   "fieldname": "venue",
+   "fieldtype": "Data",
+   "label": "Venue",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "coupon_data.serving_time",
+   "fieldname": "serving_time",
+   "fieldtype": "Time",
+   "label": "Serving Time",
+   "read_only": 1
+  },
+  {
+   "fieldname": "receiver_section",
+   "fieldtype": "Section Break",
+   "label": "Receiver"
+  },
+  {
+   "fieldname": "receiver_name",
+   "fieldtype": "Data",
+   "label": "Receiver Name"
+  },
+  {
+   "fieldname": "column_break_hpto",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "receiver_mobile",
+   "fieldtype": "Data",
+   "label": "Receiver Mobile"
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "0",
+   "fieldname": "used",
+   "fieldtype": "Int",
+   "label": "Used",
+   "permlevel": 1
+  },
+  {
+   "default": "0",
+   "fetch_from": "coupon_data.is_public",
+   "fieldname": "is_public",
+   "fieldtype": "Check",
+   "label": "Is Public",
+   "read_only": 1
+  },
+  {
+   "fieldname": "connected_booking",
+   "fieldtype": "Link",
+   "label": "Connected Booking",
+   "options": "PF Coupon Book"
+  },
+  {
+   "fetch_from": "coupon_data.color",
+   "fieldname": "color",
+   "fieldtype": "Color",
+   "label": "Color",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "emergency",
+   "fieldtype": "Check",
+   "label": "Emergency"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-04-23 12:29:37.376369",
+ "modified_by": "Administrator",
+ "module": "PF Manage",
+ "name": "PF Coupon Issue",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "PF Admin",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "PF Custodian",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "PF Checker",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "permlevel": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "PF Admin",
+   "share": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "permlevel": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "PF Custodian",
+   "share": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "permlevel": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "PF Checker",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

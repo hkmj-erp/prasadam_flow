@@ -1,0 +1,213 @@
+{
+ "actions": [],
+ "autoname": "field:coupon_name",
+ "creation": "2024-03-04 17:56:32.263582",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "active",
+  "coupon_name",
+  "category",
+  "slot",
+  "venue",
+  "column_break_bihq",
+  "festival",
+  "is_public",
+  "emergency_use_allowed",
+  "price",
+  "color",
+  "usability_section",
+  "usable_from",
+  "usable_till",
+  "serving_time",
+  "column_break_oxdv",
+  "booking_threshold",
+  "cancel_threshold",
+  "transferable",
+  "transfer_threshold"
+ ],
+ "fields": [
+  {
+   "fieldname": "coupon_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Coupon Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "category",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Category",
+   "options": "PF Coupon Category",
+   "reqd": 1
+  },
+  {
+   "fieldname": "slot",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Slot",
+   "options": "Breakfast\nLunch\nDinner\nOther",
+   "reqd": 1
+  },
+  {
+   "fieldname": "usable_from",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Usable From",
+   "reqd": 1
+  },
+  {
+   "fieldname": "usable_till",
+   "fieldtype": "Date",
+   "label": "Usable Till"
+  },
+  {
+   "fieldname": "serving_time",
+   "fieldtype": "Time",
+   "label": "Serving Time",
+   "reqd": 1
+  },
+  {
+   "description": "Allowed booking until Serving Time - Booking Threshold",
+   "fieldname": "booking_threshold",
+   "fieldtype": "Duration",
+   "label": "Booking Threshold",
+   "reqd": 1
+  },
+  {
+   "fieldname": "festival",
+   "fieldtype": "Link",
+   "label": "Festival",
+   "options": "PF Festival"
+  },
+  {
+   "fieldname": "usability_section",
+   "fieldtype": "Section Break",
+   "label": "Usability"
+  },
+  {
+   "default": "1",
+   "fieldname": "active",
+   "fieldtype": "Check",
+   "label": "Active"
+  },
+  {
+   "fieldname": "price",
+   "fieldtype": "Currency",
+   "label": "Price",
+   "mandatory_depends_on": "eval:doc.is_public"
+  },
+  {
+   "fieldname": "venue",
+   "fieldtype": "Link",
+   "label": "Venue",
+   "options": "PF Venue",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_public",
+   "fieldtype": "Check",
+   "label": "Is Public",
+   "set_only_once": 1
+  },
+  {
+   "depends_on": "eval:doc.transferable",
+   "description": "Allowed transfer until Serving Time + Transfer Threshold",
+   "fieldname": "transfer_threshold",
+   "fieldtype": "Duration",
+   "label": "Transfer Threshold"
+  },
+  {
+   "default": "0",
+   "fieldname": "transferable",
+   "fieldtype": "Check",
+   "label": "Transferable"
+  },
+  {
+   "fieldname": "column_break_bihq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_oxdv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "21600",
+   "description": "Allowed cancellation until Serving Time - Cancel Threshold",
+   "fieldname": "cancel_threshold",
+   "fieldtype": "Duration",
+   "label": "Cancel Threshold",
+   "reqd": 1
+  },
+  {
+   "default": "#B4CD29",
+   "fieldname": "color",
+   "fieldtype": "Color",
+   "label": "Color"
+  },
+  {
+   "default": "0",
+   "fieldname": "emergency_use_allowed",
+   "fieldtype": "Check",
+   "label": "Emergency Use Allowed"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-04-23 16:53:30.621347",
+ "modified_by": "Administrator",
+ "module": "PF Manage",
+ "name": "PF Coupon Data",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "PF Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "PF Custodian",
+   "share": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "PF Checker",
+   "share": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

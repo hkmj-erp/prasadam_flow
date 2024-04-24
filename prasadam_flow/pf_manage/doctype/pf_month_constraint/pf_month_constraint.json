@@ -1,0 +1,82 @@
+{
+ "actions": [],
+ "autoname": "format:{constraint_month} - {custodian_group}",
+ "creation": "2024-03-04 17:12:46.422604",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "constraint_month",
+  "custodian_group",
+  "constraints"
+ ],
+ "fields": [
+  {
+   "fieldname": "custodian_group",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Custodian Group",
+   "options": "PF Custodian Group",
+   "reqd": 1
+  },
+  {
+   "fieldname": "constraints",
+   "fieldtype": "Table",
+   "label": "Constraints",
+   "options": "PF Month Constraint Detail",
+   "reqd": 1
+  },
+  {
+   "fieldname": "constraint_month",
+   "fieldtype": "Select",
+   "label": "Month",
+   "options": "January\nFebruary\nMarch\nApril\nMay\nJune\nJuly\nAugust\nSeptember\nOctober\nNovember\nDecember",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-03-04 17:29:38.092884",
+ "modified_by": "Administrator",
+ "module": "PF Manage",
+ "name": "PF Month Constraint",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "PF Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "PF Custodian",
+   "share": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

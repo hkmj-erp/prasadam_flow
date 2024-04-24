@@ -1,0 +1,260 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"JWMz4QjouJ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Issue\",\"col\":3}},{\"id\":\"PrT8hUSdjy\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Transfer\",\"col\":3}},{\"id\":\"vX7IiBbHeV\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Book\",\"col\":3}},{\"id\":\"xOuTSEiX0D\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"5xB8VP1YMJ\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"aQG7SvHRX-\",\"type\":\"card\",\"data\":{\"card_name\":\"Constraints\",\"col\":4}},{\"id\":\"WjnNNr5tdD\",\"type\":\"card\",\"data\":{\"card_name\":\"Transactions\",\"col\":4}},{\"id\":\"Hi6lrTi4Ct\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}},{\"id\":\"CbEi1NRjSw\",\"type\":\"card\",\"data\":{\"card_name\":\"Emergency\",\"col\":4}}]",
+ "creation": "2024-03-24 05:37:39.551127",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "table",
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Prasadam Flow",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Masters",
+   "link_count": 6,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Coupon",
+   "link_count": 0,
+   "link_to": "PF Coupon Data",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Coupon Category",
+   "link_count": 0,
+   "link_to": "PF Coupon Category",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Custodian",
+   "link_count": 0,
+   "link_to": "PF Custodian",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Custodian Group",
+   "link_count": 0,
+   "link_to": "PF Custodian Group",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Festival",
+   "link_count": 0,
+   "link_to": "PF Festival",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Venue",
+   "link_count": 0,
+   "link_to": "PF Venue",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Transactions",
+   "link_count": 3,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Coupon Issue",
+   "link_count": 0,
+   "link_to": "PF Coupon Issue",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Coupon Book",
+   "link_count": 0,
+   "link_to": "PF Coupon Book",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Coupon Transfer",
+   "link_count": 0,
+   "link_to": "PF Coupon Transfer",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Constraints",
+   "link_count": 2,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Monthly Constraint",
+   "link_count": 0,
+   "link_to": "PF Month Constraint",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Regular Constraint",
+   "link_count": 0,
+   "link_to": "PF Month Constraint Regular",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Reports",
+   "link_count": 2,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Constraints",
+   "link_count": 0,
+   "link_to": "PF Month Constraints",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Coupon Track",
+   "link_count": 0,
+   "link_to": "PF Coupon Track",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Emergency",
+   "link_count": 2,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Emergency Pool",
+   "link_count": 0,
+   "link_to": "PF Emergency Pool",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Emergency Constraint",
+   "link_count": 0,
+   "link_to": "PF Emergency Constraint",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2024-04-22 11:53:23.462752",
+ "modified_by": "nrhd@hkmjaipur.org",
+ "module": "PF Manage",
+ "name": "Prasadam Flow",
+ "number_cards": [],
+ "owner": "nrhd@hkmjaipur.org",
+ "parent_page": "HKM",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [
+  {
+   "role": "PF Admin"
+  },
+  {
+   "role": "PF Custodian"
+  },
+  {
+   "role": "System Manager"
+  }
+ ],
+ "sequence_id": 7.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "New",
+   "label": "Issue",
+   "link_to": "PF Coupon Issue",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "New",
+   "label": "Transfer",
+   "link_to": "PF Coupon Transfer",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "New",
+   "label": "Book",
+   "link_to": "PF Coupon Book",
+   "stats_filter": "[]",
+   "type": "DocType"
+  }
+ ],
+ "title": "Prasadam Flow"
+}

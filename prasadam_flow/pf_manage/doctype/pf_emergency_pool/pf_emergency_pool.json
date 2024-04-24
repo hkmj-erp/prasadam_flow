@@ -1,0 +1,51 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-04-22 07:31:18.010758",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "pool"
+ ],
+ "fields": [
+  {
+   "fieldname": "pool",
+   "fieldtype": "Table",
+   "label": "Pool",
+   "options": "PF Emergency Constraint Detail"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2024-04-22 11:56:42.704760",
+ "modified_by": "Administrator",
+ "module": "PF Manage",
+ "name": "PF Emergency Pool",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "PF Admin",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

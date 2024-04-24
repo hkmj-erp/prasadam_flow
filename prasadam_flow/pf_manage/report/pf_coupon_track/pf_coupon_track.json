@@ -1,0 +1,27 @@
+{
+ "add_total_row": 1,
+ "columns": [],
+ "creation": "2024-03-14 16:20:42.243040",
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 13,
+ "is_standard": "Yes",
+ "letter_head": "",
+ "letterhead": null,
+ "modified": "2024-04-23 11:27:26.878518",
+ "modified_by": "Administrator",
+ "module": "PF Manage",
+ "name": "PF Coupon Track",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "ref_doctype": "PF Coupon Issue",
+ "report_name": "PF Coupon Track",
+ "report_type": "Script Report",
+ "roles": [
+  {
+   "role": "PF Admin"
+  }
+ ]
+}

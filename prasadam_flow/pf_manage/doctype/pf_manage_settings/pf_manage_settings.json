@@ -1,0 +1,92 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-03-04 16:53:15.350073",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "firebase_admin_app",
+  "admin_role",
+  "checker_role",
+  "qr_logo",
+  "general_custodian_group",
+  "phonepay_section",
+  "phonepay_merchant_id",
+  "phonepay_salt_key"
+ ],
+ "fields": [
+  {
+   "fieldname": "firebase_admin_app",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Firebase Admin App",
+   "options": "Firebase Admin App",
+   "reqd": 1
+  },
+  {
+   "fieldname": "admin_role",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Admin Role",
+   "options": "Role",
+   "reqd": 1
+  },
+  {
+   "fieldname": "qr_logo",
+   "fieldtype": "Attach Image",
+   "label": "QR Logo"
+  },
+  {
+   "fieldname": "checker_role",
+   "fieldtype": "Link",
+   "label": "Coupon Checker Role",
+   "options": "Role",
+   "reqd": 1
+  },
+  {
+   "fieldname": "phonepay_section",
+   "fieldtype": "Section Break",
+   "label": "PhonePay"
+  },
+  {
+   "fieldname": "phonepay_merchant_id",
+   "fieldtype": "Data",
+   "label": "PhonePay Merchant ID"
+  },
+  {
+   "fieldname": "phonepay_salt_key",
+   "fieldtype": "Password",
+   "label": "PhonePay Salt Key"
+  },
+  {
+   "fieldname": "general_custodian_group",
+   "fieldtype": "Link",
+   "label": "General Custodian Group",
+   "options": "PF Custodian Group",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2024-04-21 09:33:03.309136",
+ "modified_by": "Administrator",
+ "module": "PF Manage",
+ "name": "PF Manage Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

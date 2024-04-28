@@ -10,7 +10,6 @@ from prasadam_flow.controllers.credits import get_custodian_coupon_credits
 
 class PFCouponBook(Document):
     def before_cancel(self):
-        return
         if self.is_public:
             frappe.throw("Public coupons can't be cancelled.")
         if not is_cancel_allowed(self.coupon_data, self.use_date):

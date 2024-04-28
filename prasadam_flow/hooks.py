@@ -148,6 +148,11 @@ doc_events = {"User": {"on_update": "prasadam_flow.controllers.user.on_update"}}
 # 		"prasadam_flow.tasks.monthly"
 # 	],
 # }
+scheduler_events = {
+    "cron": {
+        "15 7 * * *": ["prasadam_flow.controllers.schedule_book.execute"],
+    }
+}
 
 # Testing
 # -------

@@ -163,7 +163,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-04-23 12:29:37.376369",
+ "modified": "2024-04-27 06:10:22.871328",
  "modified_by": "Administrator",
  "module": "PF Manage",
  "name": "PF Coupon Issue",
@@ -197,6 +197,7 @@
    "write": 1
   },
   {
+   "cancel": 1,
    "create": 1,
    "delete": 1,
    "email": 1,

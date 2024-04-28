@@ -7,9 +7,18 @@ import frappe
 from frappe.model.document import Document
 from prasadam_flow.controllers.credits import get_custodian_coupon_credits
 from prasadam_flow.controllers.emergency import get_custodian_emergency_coupon_credits
+from prasadam_flow.controllers.thresholds import is_issue_cancel_allowed
+import re
 
 
 class PFCouponIssue(Document):
+    def before_cancel(self):
+        if self.used > 0:
+            frappe.throw("Already Used (Partial or Full) Coupon can't be cancelled.")
+
+        if not is_issue_cancel_allowed(self.coupon_data, self.use_date):
+            frappe.throw("Cancellation is not allowed due to date & time thresholds.")
+
     def on_submit(self):
         if self.receiver_mobile:
             send_message(self)
@@ -18,6 +27,10 @@ class PFCouponIssue(Document):
         if self.number < self.used:
             frappe.throw("Used Count can't be more than the Coupon Credits.")
         return
+
+    def before_submit(self):
+        if self.receiver_mobile:
+            self.receiver_mobile = re.sub(r"\D", "", self.receiver_mobile)[-10:]
 
     def validate(self):
         self.validate_coupon_availability()
@@ -36,7 +49,7 @@ class PFCouponIssue(Document):
         if avl_credits < self.number:
             if self.emergency:
                 frappe.throw(
-                    f"Emergency Quota is not suuficient to meet this requirement. Balance : {avl_credits}"
+                    f"Emergency Quota is not suficient to meet this requirement. Balance : {avl_credits}"
                 )
             else:
                 frappe.throw(

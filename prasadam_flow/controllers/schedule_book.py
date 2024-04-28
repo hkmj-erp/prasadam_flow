@@ -29,5 +29,16 @@ def execute():
 
         doc.insert(ignore_permissions=True)
         doc.submit()
+        ## Notify Custodian
+        notif_doc = frappe.get_doc(
+            {
+                "doctype": "App Notification",
+                "app": frappe.db.get_single_value("PF Manage Settings", "firebase_admin_app"),
+                "user": custodian,
+                "subject": "Auto Booked!",
+                "message": f"Your coupons have auto booked as per Schedule.\nUse Date: {next_day_date}\nCoupon: {coupon}\nNumber: {credits}",
+            }
+        )
+        notif_doc.insert(ignore_permissions=True)
 
     frappe.db.commit()

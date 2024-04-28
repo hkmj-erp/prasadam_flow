@@ -41,7 +41,11 @@ def get_custodian_coupon_credits(custodian, coupon_data, use_date):
         f""" 
                 SELECT SUM(number)
                 FROM `tabPF Coupon Issue`
-                WHERE docstatus = 1 and custodian = '{custodian}' and coupon_data = '{coupon_data}' and use_date = '{use_date}'"""
+                WHERE docstatus = 1 
+                and emergency = 0
+                and custodian = '{custodian}' 
+                and coupon_data = '{coupon_data}' 
+                and use_date = '{use_date}'"""
     )
     if issued_query_result[0][0]:
         issued = issued_query_result[0][0]
@@ -184,7 +188,10 @@ def get_credits_for_all_custodians(coupon_data, use_date):
         f""" 
                 SELECT custodian, SUM(number) as credits
                 FROM `tabPF Coupon Issue`
-                WHERE docstatus = 1 and coupon_data = '{coupon_data}' and use_date = '{use_date}'
+                WHERE docstatus = 1 
+                   and emergency = 0
+                and coupon_data = '{coupon_data}' 
+                and use_date = '{use_date}'
                 GROUP BY custodian """,
         as_dict=1,
     ):

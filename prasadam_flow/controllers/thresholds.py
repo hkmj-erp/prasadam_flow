@@ -14,6 +14,19 @@ def is_issue_cancel_allowed(coupon_data, use_date):
     return not (current_datetime > threshold_dt)
 
 
+def is_emergency_issue_allowed(coupon_data, use_date):
+    coupon_data_doc = frappe.get_cached_doc("PF Coupon Data", coupon_data)
+    use_date = getdate(use_date)
+    use_dt = (
+        datetime.combine(use_date, datetime.min.time()) + coupon_data_doc.serving_time
+    )
+    threshold_dt = use_dt + timedelta(
+        hours=3
+    )  ## Till 3 hours post Serving Time, Emergency Coupons can be issued.
+    current_datetime = datetime.now()
+    return not (current_datetime > threshold_dt)
+
+
 def is_booking_allowed(coupon_data, use_date):
     coupon_data_doc = frappe.get_cached_doc("PF Coupon Data", coupon_data)
     use_date = getdate(use_date)

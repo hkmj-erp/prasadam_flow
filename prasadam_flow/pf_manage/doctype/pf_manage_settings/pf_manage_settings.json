@@ -12,7 +12,9 @@
   "general_custodian_group",
   "phonepay_section",
   "phonepay_merchant_id",
-  "phonepay_salt_key"
+  "phonepay_salt_key",
+  "security_section",
+  "public_fernet_key"
  ],
  "fields": [
   {
@@ -64,12 +66,22 @@
    "label": "General Custodian Group",
    "options": "PF Custodian Group",
    "reqd": 1
+  },
+  {
+   "fieldname": "security_section",
+   "fieldtype": "Section Break",
+   "label": "Security"
+  },
+  {
+   "fieldname": "public_fernet_key",
+   "fieldtype": "Data",
+   "label": "Public Fernet Key"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2024-04-21 09:33:03.309136",
+ "modified": "2024-05-01 05:51:58.457040",
  "modified_by": "Administrator",
  "module": "PF Manage",
  "name": "PF Manage Settings",

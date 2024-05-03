@@ -42,7 +42,7 @@ def get_custodian_coupon_credits(custodian, coupon_data, use_date):
                 SELECT SUM(number)
                 FROM `tabPF Coupon Issue`
                 WHERE docstatus = 1 
-                and emergency = 0
+                 and emergency = 0
                 and custodian = '{custodian}' 
                 and coupon_data = '{coupon_data}' 
                 and use_date = '{use_date}'"""
@@ -68,11 +68,12 @@ def get_coupons(use_date):
                     OR usable_till >= '{use_date}')
                 AND is_public = 0
                 AND active = 1
+                AND CONCAT('{use_date}', ' ', serving_time) > DATE_ADD(NOW(), INTERVAL booking_threshold second)
         """,
         as_dict=1,
     )
     festival_slots = list(set([c["slot"] for c in coupons if c["festival"]]))
-    print(festival_slots)
+
     return [
         c for c in coupons if not (c["slot"] in festival_slots and not c["festival"])
     ]
@@ -83,10 +84,10 @@ def get_custodian_credits(custodian, use_date):
     blank_credits = frappe._dict(
         booked=0, received=0, transferred=0, issued=0, issued_emergency=0, used=0
     )
-    # for c in frappe.get_all(
-    #     "PF Coupon Data", fields=["*"], filters={"active": 1, "is_public": 0}
-    # ):
-    for c in get_coupons(use_date):
+    for c in frappe.get_all(
+        "PF Coupon Data", fields=["*"], filters={"active": 1, "is_public": 0}
+    ):
+        # for c in get_coupons(use_date)://TODO
         coupons_map.setdefault(c["name"], {**c, **blank_credits})
 
     ## Booked
@@ -98,7 +99,8 @@ def get_custodian_credits(custodian, use_date):
                 GROUP BY coupon_data """,
         as_dict=1,
     ):
-        coupons_map[b["coupon_data"]]["booked"] = b["credits"]
+        if b["coupon_data"] in coupons_map:
+            coupons_map[b["coupon_data"]]["booked"] = b["credits"]
 
     ## Received
     for b in frappe.db.sql(
@@ -109,7 +111,8 @@ def get_custodian_credits(custodian, use_date):
                 GROUP BY coupon_data """,
         as_dict=1,
     ):
-        coupons_map[b["coupon_data"]]["received"] = b["credits"]
+        if b["coupon_data"] in coupons_map:
+            coupons_map[b["coupon_data"]]["received"] = b["credits"]
 
     ## Transferred
     for b in frappe.db.sql(
@@ -120,7 +123,8 @@ def get_custodian_credits(custodian, use_date):
                 GROUP BY coupon_data """,
         as_dict=1,
     ):
-        coupons_map[b["coupon_data"]]["transferred"] = b["credits"]
+        if b["coupon_data"] in coupons_map:
+            coupons_map[b["coupon_data"]]["transferred"] = b["credits"]
 
     ## Issued
     for b in frappe.db.sql(
@@ -131,11 +135,12 @@ def get_custodian_credits(custodian, use_date):
                 GROUP BY coupon_data, emergency """,
         as_dict=1,
     ):
-        if b["emergency"]:
-            coupons_map[b["coupon_data"]]["issued_emergency"] = b["credits"]
-        else:
-            coupons_map[b["coupon_data"]]["issued"] = b["credits"]
-        coupons_map[b["coupon_data"]]["used"] += b["used"]
+        if b["coupon_data"] in coupons_map:
+            if b["emergency"]:
+                coupons_map[b["coupon_data"]]["issued_emergency"] = b["credits"]
+            else:
+                coupons_map[b["coupon_data"]]["issued"] = b["credits"]
+            coupons_map[b["coupon_data"]]["used"] += b["used"]
 
     for key, value in coupons_map.items():
         value["balance"] = (
@@ -189,7 +194,7 @@ def get_credits_for_all_custodians(coupon_data, use_date):
                 SELECT custodian, SUM(number) as credits
                 FROM `tabPF Coupon Issue`
                 WHERE docstatus = 1 
-                   and emergency = 0
+                and emergency = 0
                 and coupon_data = '{coupon_data}' 
                 and use_date = '{use_date}'
                 GROUP BY custodian """,

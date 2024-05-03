@@ -85,45 +85,6 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Transactions",
-   "link_count": 3,
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Coupon Issue",
-   "link_count": 0,
-   "link_to": "PF Coupon Issue",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Coupon Book",
-   "link_count": 0,
-   "link_to": "PF Coupon Book",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Coupon Transfer",
-   "link_count": 0,
-   "link_to": "PF Coupon Transfer",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
    "label": "Constraints",
    "link_count": 2,
    "link_type": "DocType",
@@ -207,10 +168,59 @@
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Transactions",
+   "link_count": 4,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Coupon Issue",
+   "link_count": 0,
+   "link_to": "PF Coupon Issue",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Coupon Book",
+   "link_count": 0,
+   "link_to": "PF Coupon Book",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Coupon Transfer",
+   "link_count": 0,
+   "link_to": "PF Coupon Transfer",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Schedule Booking",
+   "link_count": 0,
+   "link_to": "PF Coupon Book Schedule",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
  ],
- "modified": "2024-04-22 11:53:23.462752",
- "modified_by": "nrhd@hkmjaipur.org",
+ "modified": "2024-04-29 18:06:05.981093",
+ "modified_by": "Administrator",
  "module": "PF Manage",
  "name": "Prasadam Flow",
  "number_cards": [],

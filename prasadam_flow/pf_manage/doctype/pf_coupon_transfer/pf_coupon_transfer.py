@@ -6,16 +6,20 @@ from frappe.model.document import Document
 from prasadam_flow.controllers.thresholds import is_transfer_allowed
 from prasadam_flow.controllers.credits import get_custodian_coupon_credits
 from datetime import datetime
+from frappe.utils import getdate
 
 
 class PFCouponTransfer(Document):
+    @property
+    def usedate_str(self):
+        return getdate(self.use_date).strftime("%A, %dth %B")
+
     def on_trash(self):
-        if frappe.session.user == self.to_custodian:
-            date_str = self.use_date.strftime("%A, %dth %B")
+        if frappe.session.user == self.from_custodian:
             self.notify_mobile_app_users(
-                self.from_custodian,
+                self.to_custodian,
                 "Coupons Refused!",
-                f"""{self.to_custodian_name} has refused to receive your {self.number} coupons ({self.coupon_data}) of {date_str}.""",
+                f"""{self.from_custodian_name} has refused to send you {self.number} coupons ({self.coupon_data}) of {self.usedate_str}.""",
             )
 
     def before_save(self):
@@ -71,6 +75,20 @@ class PFCouponTransfer(Document):
                 f"Transfer disallowed due to insufficient balance : {avl_credits}"
             )
         return
+
+    def after_insert(self):
+        self.notify_mobile_app_users(
+            self.from_custodian,
+            "Coupons Requested!",
+            f"""{self.to_custodian_name} has requested for {self.number} coupons ({self.coupon_data}) of {self.usedate_str}.""",
+        )
+
+    def on_submit(self):
+        self.notify_mobile_app_users(
+            self.to_custodian,
+            "Coupons Transferred!",
+            f"""{self.from_custodian_name} has accepted your request for {self.number} coupons ({self.coupon_data}) of {self.usedate_str}.""",
+        )
 
     def notify_mobile_app_users(self, erp_user, title, message):
         settings_doc = frappe.get_cached_doc("PF Manage Settings")

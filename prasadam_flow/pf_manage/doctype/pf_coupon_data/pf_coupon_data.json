@@ -40,6 +40,7 @@
    "fieldname": "category",
    "fieldtype": "Link",
    "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Category",
    "options": "PF Coupon Category",
    "reqd": 1
@@ -48,6 +49,7 @@
    "fieldname": "slot",
    "fieldtype": "Select",
    "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Slot",
    "options": "Breakfast\nLunch\nDinner\nOther",
    "reqd": 1
@@ -92,6 +94,7 @@
    "default": "1",
    "fieldname": "active",
    "fieldtype": "Check",
+   "in_list_view": 1,
    "label": "Active"
   },
   {
@@ -111,6 +114,8 @@
    "default": "0",
    "fieldname": "is_public",
    "fieldtype": "Check",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Is Public",
    "set_only_once": 1
   },
@@ -158,7 +163,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-04-24 11:06:55.137236",
+ "modified": "2024-05-01 06:17:09.072819",
  "modified_by": "Administrator",
  "module": "PF Manage",
  "name": "PF Coupon Data",

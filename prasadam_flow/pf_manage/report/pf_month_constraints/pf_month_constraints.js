@@ -27,7 +27,6 @@ frappe.query_reports["PF Month Constraints"] = {
 			"default": "Month Wise",
 			on_change: function () {
 				let wise = frappe.query_report.get_filter_value('wise');
-				console.log(wise);
 				frappe.query_report.toggle_filter_display('custodian_group', wise === 'Month Wise');
 				frappe.query_report.toggle_filter_display('month', wise === 'Custodian Group Wise');
 				frappe.query_report.refresh();

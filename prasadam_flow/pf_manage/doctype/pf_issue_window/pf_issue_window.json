@@ -10,11 +10,15 @@
   "use_date",
   "from_datetime",
   "to_datetime",
+  "title",
   "column_break_quad",
   "venue",
   "slot",
   "color",
-  "serving_time"
+  "serving_time",
+  "single_time_limit",
+  "total_issued",
+  "recent_coupons_visibility"
  ],
  "fields": [
   {
@@ -87,11 +91,36 @@
    "fieldname": "serving_time",
    "fieldtype": "Time",
    "label": "Serving Time"
+  },
+  {
+   "default": "1",
+   "fieldname": "single_time_limit",
+   "fieldtype": "Int",
+   "label": "Single Time Limit",
+   "reqd": 1
+  },
+  {
+   "fieldname": "total_issued",
+   "fieldtype": "Int",
+   "is_virtual": 1,
+   "label": "Total Issued"
+  },
+  {
+   "default": "Common",
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "label": "Window Title"
+  },
+  {
+   "default": "0",
+   "fieldname": "recent_coupons_visibility",
+   "fieldtype": "Check",
+   "label": "Recent Coupons Visibility"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-05-03 13:55:36.266351",
+ "modified": "2024-05-13 17:23:36.787300",
  "modified_by": "Administrator",
  "module": "PF Manage",
  "name": "PF Issue Window",
@@ -137,5 +166,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "title"
 }

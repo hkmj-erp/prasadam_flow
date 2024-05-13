@@ -1,1 +1,0 @@
-import{j as r,H as e}from"./index-BCq0RwYl.js";import{C as o}from"./chunk-FAWTVNS3-BrRnI-Ad.js";const t=()=>r.jsx(o,{children:r.jsx(e,{children:"Hare Krishna! Welcome to Prasadam Flow."})});export{t as Component};

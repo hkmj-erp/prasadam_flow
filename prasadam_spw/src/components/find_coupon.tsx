@@ -1,40 +1,11 @@
-import { Text, Container, Heading, Input, InputGroup, InputLeftAddon, InputRightAddon, Stack, Button, FormControl, FormErrorMessage, FormLabel, Box, Checkbox, Flex, VStack, propNames, Alert, AlertIcon, HStack, PinInput, PinInputField } from "@chakra-ui/react"
-import axios from "axios";
+import { Text, Input, InputGroup, InputLeftAddon, Button, FormControl, FormLabel, Box, VStack, Alert, AlertIcon, HStack, PinInput, PinInputField } from "@chakra-ui/react"
 import { SingleDatepicker } from "chakra-dayzed-datepicker";
-import { ErrorMessage, useFormik, useFormikContext } from "formik";
+import { useFormik } from "formik";
 import { useFrappePostCall } from "frappe-react-sdk";
 import moment from "moment";
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
 import { CouponsList } from "./coupons_list";
-
-interface FieldProps {
-    field: {
-        name: string;
-        value: any;
-        onChange: (event: React.ChangeEvent<any>) => void;
-        onBlur: (event: React.FocusEvent<any>) => void;
-    };
-    form: {
-        touched: { [field: string]: boolean };
-        errors: { [field: string]: string };
-    };
-    meta: {
-        error?: string;
-        touched?: boolean;
-    };
-}
-
-interface IssueCoupon {
-    coupon_data: string,
-    slot: string,
-    venue: string,
-    use_date: Date,
-    name: string,
-    serving_time: string,
-    number: number,
-    used: number
-}
+import { IssueCoupon } from "./window";
 
 export const FindCoupons = () => {
 
@@ -87,18 +58,6 @@ export const FindCoupons = () => {
                         <Text size="xl">Find Prasadam Coupons</Text>
                         <FormControl>
                             <FormLabel htmlFor="use_date">Use Date</FormLabel>
-                            {/* <Input id="use_date"
-                                name="use_date"
-                                type="date"
-                                value={formik.values.use_date}
-                                onChange={(v) => {
-                                    console.log(v);
-                                    const newDate = moment(v.timeStamp).format('YYYY-MM-DD');
-                                    // formik.values.use_date = newDate;
-                                    formik.setFieldValue("use_date", newDate);
-                                    console.log(newDate);
-                                }}
-                            /> */}
                             <SingleDatepicker
                                 name="date-input"
                                 date={use_date}

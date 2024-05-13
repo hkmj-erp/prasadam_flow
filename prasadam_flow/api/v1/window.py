@@ -4,6 +4,7 @@ from datetime import datetime
 from hkm.mobile_app.auth import random_string_generator
 from frappe.core.doctype.sms_settings.sms_settings import send_sms
 from frappe.utils import today
+from prasadam_flow.controllers.credits import get_custodian_coupon_credits
 
 
 @frappe.whitelist()
@@ -29,13 +30,49 @@ def encode_window_id(windowId):
 
 def decode_window_id(encryptedId):
     settings = frappe.get_cached_doc("PF Manage Settings")
-    key = settings.public_fernet_key.encode()
-    f = Fernet(key)
-    decryptedId = f.decrypt(encryptedId.encode())
-    windowId = decryptedId.decode()
+    f = Fernet(settings.public_fernet_key.encode())
+    windowId = (f.decrypt(encryptedId.encode())).decode()
     if not frappe.db.exists("PF Issue Window", windowId, cache=True):
         frappe.throw("This Window ID is invalid.")
     return windowId
+
+
+@frappe.whitelist(allow_guest=True, methods=["GET"])
+def get_window_details(encrypted_window_id):
+    id = decode_window_id(encrypted_window_id)
+    window_doc = frappe.get_doc("PF Issue Window", id)
+    recent_issues = None
+    credits_left = None
+    if window_doc.recent_coupons_visibility:
+        recent_issues = frappe.get_all(
+            "PF Coupon Issue",
+            filters={"issue_window": id, "docstatus": 1},
+            fields=[
+                "use_date",
+                "number",
+                "used",
+                "receiver_name",
+                "receiver_mobile",
+                "coupon_data",
+                "slot",
+                "venue",
+                "serving_time",
+                "creation",
+                "name",
+            ],
+            order_by="creation desc",
+            page_length=20,
+        )
+        credits_left = get_custodian_coupon_credits(
+            window_doc.custodian, window_doc.coupon_data, window_doc.use_date
+        )
+    response = frappe._dict(
+        limit=window_doc.single_time_limit,
+        credits=credits_left,
+        recent_issues=recent_issues,
+    )
+
+    return response
 
 
 @frappe.whitelist(allow_guest=True, methods=["POST"])
@@ -44,6 +81,7 @@ def get_coupon():
     encrypted_window_id = data.get("encrypted_window_id")
     name = data.get("name")
     mobile = data.get("mobile")
+    number = data.get("number")
     # return encrypted_window_id
     id = decode_window_id(encrypted_window_id)
     doc = frappe.get_doc("PF Issue Window", id)
@@ -55,6 +93,9 @@ def get_coupon():
 
     if len(name) <= 5:
         frappe.throw("Please write your full name.")
+
+    if number > doc.single_time_limit:
+        frappe.throw(f"Coupon count can not be more than {doc.single_time_limit}")
 
     cleaned_mobile = re.sub(r"\D", "", str(mobile))[-10:]
     if len(cleaned_mobile) != 10:
@@ -73,7 +114,7 @@ def get_coupon():
             "custodian": doc.custodian,
             "coupon_data": doc.coupon_data,
             "use_date": doc.use_date,
-            "number": 1,
+            "number": number,
             "receiver_name": name,
             "receiver_mobile": cleaned_mobile,
             "docstatus": 1,
@@ -81,7 +122,7 @@ def get_coupon():
         }
     )
     issue_doc.save()
-    return
+    return issue_doc.name
 
 
 REDIS_PREFIX = "prasadam_otp"

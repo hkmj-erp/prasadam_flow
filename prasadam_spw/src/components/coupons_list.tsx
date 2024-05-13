@@ -13,7 +13,7 @@ export const CouponsList = ({ coupons }: Props) => {
         return <p>No Entries</p>
     }
     return <>
-        <List spacing={8}>
+        <List spacing={3}>
             {coupons && coupons.map((v) => {
                 return <ListItem><CouponView coupon={v} /></ListItem>
             })}

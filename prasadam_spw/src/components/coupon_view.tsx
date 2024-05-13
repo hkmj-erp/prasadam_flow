@@ -44,8 +44,7 @@ export const CouponView = ({ coupon }: Props) => {
         <CardBody>
             <Heading>{coupon.receiver_name}</Heading>
             <Text fontSize='4xl'>{coupon.receiver_mobile}</Text>
-            <Divider mt={10} />
-            <Flex mt={10}>
+            <Flex mt={4}>
                 <Box>
                     <IconButton
                         colorScheme='orange'
@@ -69,10 +68,10 @@ export const CouponView = ({ coupon }: Props) => {
                 </Box>
 
             </Flex>
-            <Heading mt={10} as='h5' size='sm'>
-                <HStack><Icon as={MdAccessTime} /> <Text>Issued at</Text></HStack>
+            <Heading mt={5} as='h5' size='sm'>
+                <HStack><Icon as={MdAccessTime} /> <Text>Issued</Text></HStack>
             </Heading>
-            <Tag mt={2} bg="yellow.100" ><Text style={{ textTransform: 'capitalize' }} mt={2} fontSize="2xl"> {formatRelative(coupon.creation, new Date())}</Text></Tag>
+            <Tag my={2} bg="yellow.100" ><Text style={{ textTransform: 'capitalize' }} my={2} fontSize="2xl"> {formatRelative(coupon.creation, new Date())}</Text></Tag>
 
         </CardBody>
     </Card>

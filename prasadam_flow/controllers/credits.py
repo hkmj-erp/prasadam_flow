@@ -1,5 +1,5 @@
 import frappe
-
+from datetime import datetime, timedelta
 
 ### This will get coupon credits of a custodian on a given date.
 
@@ -68,14 +68,23 @@ def get_coupons(use_date):
                     OR usable_till >= '{use_date}')
                 AND is_public = 0
                 AND active = 1
-                AND CONCAT('{use_date}', ' ', serving_time) > DATE_ADD(NOW(), INTERVAL booking_threshold second)
-        """,
+                """,
         as_dict=1,
+        # AND CONCAT('{use_date}', ' ', serving_time) > DATE_ADD(NOW(), INTERVAL booking_threshold second)
     )
+    avl_for_booking_coupons = []
+    for c in coupons:
+        serving_dt = datetime.strptime(
+            f"{use_date} {c['serving_time']}", "%Y-%m-%d %H:%M:%S"
+        )
+        if (serving_dt - timedelta(seconds=c["booking_threshold"])) > datetime.now():
+            avl_for_booking_coupons.append(c)
     festival_slots = list(set([c["slot"] for c in coupons if c["festival"]]))
 
     return [
-        c for c in coupons if not (c["slot"] in festival_slots and not c["festival"])
+        c
+        for c in avl_for_booking_coupons
+        if not (c["slot"] in festival_slots and not c["festival"])
     ]
 
 

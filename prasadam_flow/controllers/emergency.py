@@ -49,12 +49,28 @@ def get_custodian_emergency_coupon_credits(custodian, coupon_data, use_date):
 
 def get_custodian_emergency_credits(custodian, use_date):
     coupons_map = {}
-    for c in frappe.get_all(
-        "PF Coupon Data",
-        fields=["*"],
-        filters={"active": 1, "is_public": 0, "emergency_use_allowed": 1},
-    ):
-        if is_emergency_issue_allowed(c["name"], use_date):
+
+    coupons = frappe.db.sql(
+        f"""
+                    SELECT *
+                    FROM `tabPF Coupon Data`
+                    WHERE usable_from <= '{use_date}'
+                    AND (
+                        usable_till IS NULL 
+                        OR usable_till = "" 
+                        OR usable_till >= '{use_date}')
+                    AND is_public = 0
+                    AND active = 1
+                    AND emergency_use_allowed = 1
+                    ORDER BY festival desc, slot
+                    """,
+        as_dict=1,
+    )
+
+    festival_slots = [c.get("slot") for c in coupons if c.get("festival")]
+
+    for c in coupons:
+        if c["festival"] or c["slot"] not in festival_slots:
             coupons_map.setdefault(
                 c["name"],
                 {

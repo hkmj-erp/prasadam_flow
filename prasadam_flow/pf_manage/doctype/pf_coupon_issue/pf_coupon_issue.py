@@ -8,6 +8,7 @@ from frappe.model.document import Document
 from prasadam_flow.controllers.credits import get_custodian_coupon_credits
 from prasadam_flow.controllers.emergency import get_custodian_emergency_coupon_credits
 from prasadam_flow.controllers.thresholds import is_issue_cancel_allowed
+from prasadam_flow.controllers.festival import validate_festival_conflict
 import re
 
 
@@ -34,6 +35,7 @@ class PFCouponIssue(Document):
 
     def validate(self):
         self.validate_coupon_availability()
+        validate_festival_conflict(self)
         return
 
     def validate_coupon_availability(self):

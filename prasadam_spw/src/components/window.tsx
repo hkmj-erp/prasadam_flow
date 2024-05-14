@@ -30,12 +30,6 @@ type WindowDetails = {
 export const IssueWindow = () => {
     let { id } = useParams();
 
-    const navigate = useNavigate();
-
-    const {
-        call, error
-    } = useFrappePostCall("prasadam_flow.api.v1.window.get_coupon");
-
     const { data: windowDetails } = useFrappeGetCall<{ message: WindowDetails }>("prasadam_flow.api.v1.window.get_window_details", { "encrypted_window_id": id });
 
     const coupons = useMemo(() => {
@@ -47,10 +41,39 @@ export const IssueWindow = () => {
         }
     }, [windowDetails])
 
+    return (
+        <Tabs isFitted variant='enclosed'>
+            {windowDetails?.message.credits && <TabList mb='1em'>
+                <Tab>Issue Coupon</Tab>
+                <Tab>Recently Issued Coupons</Tab>
+            </TabList>}
+            <TabPanels>
+                <TabPanel>
+                    <NewIssueWindow id={id} windowDetails={windowDetails} />
+                </TabPanel>
+                {windowDetails?.message.recent_issues && <TabPanel>
+                    <CouponsList coupons={coupons} />
+                </TabPanel>}
+            </TabPanels>
+        </Tabs>
+
+    );
+};
+
+type NewIssueProps = {
+    id?: string,
+    windowDetails?: { message: WindowDetails }
+}
+
+const NewIssueWindow = ({ id, windowDetails }: NewIssueProps) => {
+    const navigate = useNavigate();
     const [couponNumber, setCouponNumber] = React.useState(1)
     const handleChange = (value: React.SetStateAction<number>) => setCouponNumber(value);
 
-    // const [windowDetails, setWindowDetails] = useState(null);
+
+    const {
+        call, error
+    } = useFrappePostCall("prasadam_flow.api.v1.window.get_coupon");
 
     const formik = useFormik({
         initialValues: {
@@ -69,88 +92,74 @@ export const IssueWindow = () => {
         }
     });
 
-    return (
-        <Tabs isFitted variant='enclosed'>
-            <TabList mb='1em'>
-                <Tab>Issue Coupon</Tab>
-                <Tab>Recently Issued Coupons</Tab>
-            </TabList>
-            <TabPanels>
-                <TabPanel>
-                    <Flex align="center" justify="center" h="70vh">
-                        <Box bg="white" p={6} rounded="md">
-                            <form onSubmit={formik.handleSubmit}>
-                                <VStack spacing={4} align="flex-start">
-                                    <Text size="xl">Prasadam Coupon Issue Window</Text>
-                                    {windowDetails?.message.credits ? <Stat bg='green.100' borderRadius="10" p={2}>
-                                        <StatLabel>Available Credits</StatLabel>
-                                        <StatNumber>{windowDetails?.message.credits}</StatNumber>
-                                        <StatHelpText></StatHelpText>
-                                    </Stat> : <p></p>}
-                                    <FormControl>
-                                        <FormLabel htmlFor="full_name">Full Name</FormLabel>
-                                        <Input id="full_name"
-                                            name="full_name"
-                                            variant="filled"
-                                            onChange={formik.handleChange}
-                                            value={formik.values.full_name}
-                                        />
-                                    </FormControl>
-                                    <FormControl>
-                                        <FormLabel htmlFor="mobile">WhatsApp Number</FormLabel>
+    return <>
+        <Flex align="center" justify="center" h="70vh">
+            <Box bg="white" p={6} rounded="md">
+                <form onSubmit={formik.handleSubmit}>
+                    <VStack spacing={4} align="flex-start">
+                        <Text size="xl">Prasadam Coupon Issue Window</Text>
+                        {windowDetails?.message.credits ? <Stat bg='green.100' borderRadius="10" p={2}>
+                            <StatLabel>Available Credits</StatLabel>
+                            <StatNumber>{windowDetails?.message.credits}</StatNumber>
+                            <StatHelpText></StatHelpText>
+                        </Stat> : <p></p>}
+                        <FormControl>
+                            <FormLabel htmlFor="full_name">Full Name</FormLabel>
+                            <Input id="full_name"
+                                name="full_name"
+                                variant="filled"
+                                onChange={formik.handleChange}
+                                value={formik.values.full_name}
+                            />
+                        </FormControl>
+                        <FormControl>
+                            <FormLabel htmlFor="mobile">WhatsApp Number</FormLabel>
 
-                                        <InputGroup>
-                                            <InputLeftAddon>+91</InputLeftAddon>
-                                            <Input id="mobile"
-                                                name="mobile"
-                                                type="number"
-                                                variant="filled"
-                                                onChange={formik.handleChange}
-                                                value={formik.values.mobile}
-                                                maxLength={10} />
-                                        </InputGroup>
-                                    </FormControl>
-                                    <FormLabel>Number</FormLabel>
-                                    <Slider
-                                        focusThumbOnChange={false}
-                                        value={couponNumber}
-                                        min={1}
-                                        max={windowDetails?.message.limit}
-                                        step={1}
-                                        onChange={handleChange}
-                                    >
-                                        <SliderTrack>
-                                            <SliderFilledTrack />
-                                        </SliderTrack>
-                                        <SliderThumb fontSize='3xl' boxSize={10} children={couponNumber} />
-                                    </Slider>
-                                    <Button
-                                        my={10}
-                                        type="submit"
-                                        colorScheme="purple"
-                                        width="full"
-                                        isLoading={formik.isSubmitting}
-                                    >
-                                        Receive
-                                    </Button>
-                                    {/* <ErrorMessage name="Erro"></ErrorMessage> */}
-                                    {/* name={error?.exception ?? "Something went wrong!"} */}
-                                    {error && (
-                                        <Alert status='error'>
-                                            <AlertIcon />
-                                            {error?.exception ?? "Something went wrong!"}
-                                        </Alert>
-                                    )}
-                                </VStack>
-                            </form>
-                        </Box>
-                    </Flex>
-                </TabPanel>
-                <TabPanel>
-                    <CouponsList coupons={coupons} />
-                </TabPanel>
-            </TabPanels>
-        </Tabs>
-
-    );
-};
+                            <InputGroup>
+                                <InputLeftAddon>+91</InputLeftAddon>
+                                <Input id="mobile"
+                                    name="mobile"
+                                    type="number"
+                                    variant="filled"
+                                    onChange={formik.handleChange}
+                                    value={formik.values.mobile}
+                                    maxLength={10} />
+                            </InputGroup>
+                        </FormControl>
+                        <FormLabel>Number</FormLabel>
+                        <Slider
+                            focusThumbOnChange={false}
+                            value={couponNumber}
+                            min={1}
+                            max={windowDetails?.message.limit}
+                            step={1}
+                            onChange={handleChange}
+                        >
+                            <SliderTrack>
+                                <SliderFilledTrack />
+                            </SliderTrack>
+                            <SliderThumb fontSize='3xl' boxSize={10} children={couponNumber} />
+                        </Slider>
+                        <Button
+                            my={10}
+                            type="submit"
+                            colorScheme="purple"
+                            width="full"
+                            isLoading={formik.isSubmitting}
+                        >
+                            Receive
+                        </Button>
+                        {/* <ErrorMessage name="Erro"></ErrorMessage> */}
+                        {/* name={error?.exception ?? "Something went wrong!"} */}
+                        {error && (
+                            <Alert status='error'>
+                                <AlertIcon />
+                                {error?.exception ?? "Something went wrong!"}
+                            </Alert>
+                        )}
+                    </VStack>
+                </form>
+            </Box>
+        </Flex>
+    </>
+}

@@ -6,6 +6,7 @@ from frappe.model.document import Document
 from prasadam_flow.controllers.constraints import get_custodian_quota
 from prasadam_flow.controllers.thresholds import is_booking_allowed, is_cancel_allowed
 from prasadam_flow.controllers.credits import get_custodian_coupon_credits
+from prasadam_flow.controllers.festival import validate_festival_conflict
 
 
 class PFCouponBook(Document):
@@ -41,30 +42,7 @@ class PFCouponBook(Document):
     def validate(self):
         self.validate_coupon_quota()
         self.validate_booking_threshold()
-        self.validate_festival_conflict()
-        return
-
-    def validate_festival_conflict(self):
-        coupons = frappe.db.sql(
-            f"""
-                        SELECT
-                            coupon_name,festival
-                        FROM `tabPF Coupon Data`
-                        WHERE 
-                            usable_from <= '{self.use_date}'
-                            AND (
-                                usable_till IS NULL 
-                                OR usable_till ="" 
-                                OR usable_till >= '{self.use_date}')
-                            AND slot = '{self.slot}'
-                            AND is_public = {self.is_public}
-                            AND active = 1
-                        """,
-            as_dict=1,
-        )
-        festival_slot = any(c.get("festival") is not None for c in coupons)
-        if festival_slot and not self.festival:
-            frappe.throw("Non-Festival Coupons can't be booked in Festival Slots.")
+        validate_festival_conflict(self)
         return
 
     def validate_booking_threshold(self):

@@ -66,7 +66,7 @@ export const CouponView = ({ coupon }: Props) => {
                         <Text><Icon as={AiOutlineNumber} /> Used : {coupon.used}</Text>
                     </Stack>
                 </Box>
-
+                <Spacer />
             </Flex>
             <Heading mt={5} as='h5' size='sm'>
                 <HStack><Icon as={MdAccessTime} /> <Text>Issued</Text></HStack>

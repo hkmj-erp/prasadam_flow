@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_rename": 1,
  "autoname": "field:custodian_group",
  "creation": "2024-03-05 15:11:32.329179",
  "doctype": "DocType",
@@ -27,7 +28,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-03-05 15:12:57.220418",
+ "modified": "2024-05-21 14:02:47.960264",
  "modified_by": "Administrator",
  "module": "PF Manage",
  "name": "PF Month Constraint Regular",

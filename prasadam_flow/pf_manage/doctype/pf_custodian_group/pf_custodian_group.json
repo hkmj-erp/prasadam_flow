@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_rename": 1,
  "autoname": "field:group_name",
  "creation": "2024-03-04 17:14:28.333415",
  "doctype": "DocType",
@@ -26,7 +27,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-03-04 17:15:51.233752",
+ "modified": "2024-05-21 10:05:00.682103",
  "modified_by": "Administrator",
  "module": "PF Manage",
  "name": "PF Custodian Group",

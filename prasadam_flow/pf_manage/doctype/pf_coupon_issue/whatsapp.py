@@ -5,6 +5,7 @@ from frappe.utils import getdate
 
 def send_message(coupon_doc):
     settings = frappe.get_cached_doc("WhatsApp Settings")
+    pf_settings = frappe.get_cached_doc("PF Manage Settings")
     url = f"{settings.url}/{settings.version}/{settings.phone_id}/messages"
 
     site_name = cstr(frappe.local.site)
@@ -20,7 +21,7 @@ def send_message(coupon_doc):
             "to": f"+91{coupon_doc.receiver_mobile}",
             "type": "template",
             "template": {
-                "name": "prasadam_coupon_2",
+                "name": pf_settings.issue_template_name,
                 "language": {"code": "en"},
                 "components": [
                     {

@@ -61,7 +61,7 @@ def get_window_details(encrypted_window_id):
                 "name",
             ],
             order_by="creation desc",
-            page_length=20,
+            page_length=500,
         )
         credits_left = get_custodian_coupon_credits(
             window_doc.custodian, window_doc.coupon_data, window_doc.use_date

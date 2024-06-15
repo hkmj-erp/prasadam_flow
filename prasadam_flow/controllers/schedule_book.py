@@ -30,12 +30,12 @@ def execute():
         doc.insert(ignore_permissions=True)
         doc.submit()
         ## Notify Custodian
+        settings_doc = frappe.get_cached_doc("PF Manage Settings")
         notif_doc = frappe.get_doc(
             {
                 "doctype": "App Notification",
-                "app": frappe.db.get_single_value(
-                    "PF Manage Settings", "firebase_admin_app"
-                ),
+                "app": settings_doc.firebase_admin_app,
+                "channel": settings_doc.coupon_auto_booking_channel,
                 "user": custodian,
                 "subject": "Auto Booked!",
                 "message": f"Your coupons have auto booked as per Schedule.\nUse Date: {next_day_date}\nCoupon: {coupon}\nNumber: {credits}",

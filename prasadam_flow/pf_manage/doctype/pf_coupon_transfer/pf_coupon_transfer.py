@@ -96,6 +96,7 @@ class PFCouponTransfer(Document):
             {
                 "doctype": "App Notification",
                 "app": settings_doc.firebase_admin_app,
+                "channel": settings_doc.coupon_transfer_channel,
                 "user": erp_user,
                 "subject": title,
                 "message": message,

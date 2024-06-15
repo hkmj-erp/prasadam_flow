@@ -16,7 +16,10 @@
   "security_section",
   "public_fernet_key",
   "whatsapp_section",
-  "issue_template_name"
+  "issue_template_name",
+  "notification_channels_tab",
+  "coupon_auto_booking_channel",
+  "coupon_transfer_channel"
  ],
  "fields": [
   {
@@ -88,12 +91,29 @@
    "fieldname": "issue_template_name",
    "fieldtype": "Data",
    "label": "Issue Template Name"
+  },
+  {
+   "fieldname": "notification_channels_tab",
+   "fieldtype": "Tab Break",
+   "label": "Notification Channels"
+  },
+  {
+   "fieldname": "coupon_auto_booking_channel",
+   "fieldtype": "Link",
+   "label": "Coupon Auto Booking Channel",
+   "options": "Notification Channel"
+  },
+  {
+   "fieldname": "coupon_transfer_channel",
+   "fieldtype": "Link",
+   "label": "Coupon Transfer Channel",
+   "options": "Notification Channel"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2024-05-19 16:31:14.892571",
+ "modified": "2024-06-15 16:25:44.251235",
  "modified_by": "Administrator",
  "module": "PF Manage",
  "name": "PF Manage Settings",

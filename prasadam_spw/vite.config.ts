@@ -1,7 +1,7 @@
 import path from 'path';
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react'
-import proxyOptions from './proxyOptions';
+import react from '@vitejs/plugin-react';
+import proxyOptions from "./proxyOptions";
 
 // https://vitejs.dev/config/
 export default defineConfig({

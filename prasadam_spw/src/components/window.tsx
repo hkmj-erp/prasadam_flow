@@ -2,7 +2,6 @@ import { Text, Input, InputGroup, InputLeftAddon, Button, FormControl, FormLabel
 import { useFormik } from "formik";
 import { useFrappeGetCall, useFrappePostCall } from "frappe-react-sdk";
 import React, { useEffect, useMemo, useState } from "react";
-import { BsRecord } from "react-icons/bs";
 import { useNavigate, useParams } from "react-router-dom";
 import { CouponsList } from "./coupons_list";
 

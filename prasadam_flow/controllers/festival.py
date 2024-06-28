@@ -19,7 +19,11 @@ def validate_festival_conflict(doc):
                         """,
         as_dict=1,
     )
-    festival_slot = any(c.get("festival") is not None for c in coupons)
+    festival_slot = False
+    for c in coupons:
+        if c.get("festival"):
+            festival_slot = True
+            break
     if festival_slot and not doc.festival:
         frappe.throw("Non-Festival Coupons can't be booked/issued in Festival Slots.")
     return

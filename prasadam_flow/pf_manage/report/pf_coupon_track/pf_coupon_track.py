@@ -24,19 +24,13 @@ def execute(filters=None):
 
     for c in custodian_map.values():
         c["unissued"] = c["booked"] + c["received"] - c["transfered"] - c["issued"]
-        c["unused"] = c["issued"] - c["used"]
+        c["unused"] = c["issued"] + c["emergency_issued"] - c["used"]
 
     only_custodians_map_with_values = {
         k: v
         for k, v in custodian_map.items()
-        if (
-            v["booked"] > 0
-            or v["received"] > 0
-        )
+        if (v["booked"] > 0 or v["received"] > 0 or v["emergency_issued"] > 0)
     }
-
-    # for k,v in custodian_map.items():
-    # 	v['cooking'] = v['booked'] +
 
     columns = get_columns()
 
@@ -49,7 +43,14 @@ def execute(filters=None):
 def get_coupon_credits_map(custodians, coupon_data, use_date):
     custodian_map = {}
     blank_coupon_map = frappe._dict(
-        booked=0, received=0, transfered=0, issued=0, used=0, unissued=0, unused=0
+        booked=0,
+        received=0,
+        transfered=0,
+        issued=0,
+        used=0,
+        unissued=0,
+        unused=0,
+        emergency_issued=0,
     )
     for custodian in custodians:
         custodian_map.setdefault(
@@ -89,7 +90,7 @@ def get_coupon_credits_map(custodians, coupon_data, use_date):
     ## Issued
     for i in frappe.db.sql(
         f"""
-		SELECT custodian, number, used 
+		SELECT custodian, number, used, emergency
 		FROM `tabPF Coupon Issue`
 		WHERE docstatus = 1
 			AND use_date = '{use_date}'
@@ -97,7 +98,10 @@ def get_coupon_credits_map(custodians, coupon_data, use_date):
 		""",
         as_dict=1,
     ):
-        custodian_map[i["custodian"]]["issued"] += i["number"]
+        if i["emergency"]:
+            custodian_map[i["custodian"]]["emergency_issued"] += i["number"]
+        else:
+            custodian_map[i["custodian"]]["issued"] += i["number"]
 
         if i["used"]:
             custodian_map[i["custodian"]]["used"] += i["used"]
@@ -118,7 +122,7 @@ def get_columns():
         [
             {
                 "label": v,
-                "fieldname": v.lower(),
+                "fieldname": v.lower().replace(" ", "_"),
                 "fieldtype": "Int",
                 "width": 120,
             }
@@ -128,6 +132,7 @@ def get_columns():
                 "Transfered",
                 "Issued",
                 "Unissued",
+                "Emergency Issued",
                 "Used",
                 "Unused",
             ]

@@ -230,4 +230,6 @@ scheduler_events = {
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
 
-website_route_rules = [{'from_route': '/prasadam_spw/<path:app_path>', 'to_route': 'prasadam_spw'},]
+website_route_rules = [
+    {"from_route": "/prasadam_spw/<path:app_path>", "to_route": "prasadam_spw"},
+]

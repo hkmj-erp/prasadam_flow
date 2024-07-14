@@ -20,11 +20,16 @@ def is_emergency_issue_allowed(coupon_data, use_date):
     use_dt = (
         datetime.combine(use_date, datetime.min.time()) + coupon_data_doc.serving_time
     )
-    threshold_dt = use_dt + timedelta(
-        hours=3
-    )  ## Till 3 hours post Serving Time, Emergency Coupons can be issued.
+
+    usable_from = use_dt - timedelta(hours=2)
+    usable_till = use_dt + timedelta(hours=3)
+
+    # threshold_dt = use_dt + timedelta(
+    #     hours=3
+    # )  ## Till 3 hours post Serving Time, Emergency Coupons can be issued.
+
     current_datetime = datetime.now()
-    return not (current_datetime > threshold_dt)
+    return usable_till >= current_datetime >= usable_from
 
 
 def is_booking_allowed(coupon_data, use_date):

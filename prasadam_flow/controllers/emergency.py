@@ -1,5 +1,5 @@
 import frappe
-from .thresholds import is_emergency_issue_allowed
+# from .thresholds import is_emergency_issue_allowed
 
 
 def get_custodian_emergency_coupon_credits(custodian, coupon_data, use_date):

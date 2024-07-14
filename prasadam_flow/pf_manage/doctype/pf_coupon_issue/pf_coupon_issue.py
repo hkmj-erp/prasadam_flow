@@ -7,7 +7,10 @@ import frappe
 from frappe.model.document import Document
 from prasadam_flow.controllers.credits import get_custodian_coupon_credits
 from prasadam_flow.controllers.emergency import get_custodian_emergency_coupon_credits
-from prasadam_flow.controllers.thresholds import is_issue_cancel_allowed
+from prasadam_flow.controllers.thresholds import (
+    is_emergency_issue_allowed,
+    is_issue_cancel_allowed,
+)
 from prasadam_flow.controllers.festival import validate_festival_conflict
 import re
 
@@ -35,8 +38,15 @@ class PFCouponIssue(Document):
 
     def validate(self):
         self.validate_coupon_availability()
+        if not is_emergency_issue_allowed(self.coupon_data, self.use_date):
+            frappe.throw(
+                "Emergency coupons are allowed to be issues only 2 hours before the Serving Time."
+            )
         validate_festival_conflict(self)
         return
+
+    def validate_emergency_issue_timings(self):
+        pass
 
     def validate_coupon_availability(self):
         avl_credits = 0
